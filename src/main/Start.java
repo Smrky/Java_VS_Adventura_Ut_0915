@@ -24,8 +24,7 @@ public class Start
     {
         IHra hra = new Hra();
         TextoveRozhrani ui = new TextoveRozhrani(hra);
-        System.out.println("nazdar");
-        if (args.length < 1) {
+        if (args.length >= 0) {
             ui.hraj();
         } else {
             ui.hrajZeSouboru(args[0]);

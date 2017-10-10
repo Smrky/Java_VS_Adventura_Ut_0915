@@ -25,6 +25,10 @@ public class TextoveRozhrani {
         this.hra = hra;
     }
 
+    public TextoveRozhrani() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      *  Hlavní metoda hry. Vypíše úvodní text a pak opakuje čtení a zpracování
      *  příkazu od hráče do konce hry (dokud metoda konecHry() z logiky nevrátí
