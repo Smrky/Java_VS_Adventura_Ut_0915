@@ -78,7 +78,7 @@ public class Main extends Application {
         
         FlowPane obrazekFlowPane = new FlowPane();
         
-        ImageView obrazekImageView = new ImageView(new Image(Main.class.getResourceAsStream("./zdroje/mapa.xyz"),300,300,false,true));
+        ImageView obrazekImageView = new ImageView(new Image(Main.class.getResourceAsStream("/zdroje/mapa.jpg"),200,200,false,true));
         obrazekFlowPane.setAlignment(Pos.CENTER);
         obrazekFlowPane.getChildren().add(obrazekImageView);
         
