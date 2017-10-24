@@ -31,15 +31,15 @@ public class HerniPlan {
      */
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
-        Prostor mSPostavou = new Prostor("s_postavou", " s postavou. V místnosti nic moc není, pouze tajemná postava", "", false);
+        Prostor mSPostavou = new Prostor("s_postavou", " s postavou. V místnosti nic moc není, pouze tajemná postava", "", false, 1, 1);
         Prostor mSMecem = new Prostor("s_mecem", " s mečem. V místnosti vidíš velký meč zaražený v kameni připomínající Excalibur. Místnost osvětlují zapálené louče.\n" +
-                                                 "Z jednoho východu vychází uklidňující modrá záře", ", kde býval meč v kameni.", false);
-        Prostor mSKamenem = new Prostor("s_kamenem", " s kamenem. Zajímavé.. Z této místnosti vycházela modrá záře, ale ve skutečnosti se v ní nachází špinavý, zaprášený kámen zarostlý mechem. Je za ním cedulka, která píše \"Prosím, nechte kámen na svém místě\"", "", false);
-        Prostor mSDetektorem = new Prostor("s_detektorem", " s detektorem. Vidíš velký detektor kovu, jako ty, které bývají na letištích, ale není u nich obsluha. Vypadá, že už dlouho nebyl používán a snad ani nefunguje.", " s detektorem, který sežral tvůj starý batoh a vybuchl.", true);
-        Prostor mSHlavici = new Prostor("s_hlavici", " s atomovou hlavicí. Uprostřed místnosti je velká atomová hlavice.", ", kde původně byla atomová hlavice.", false);
-        Prostor sklad = new Prostor("sklad", " sklad. Je tu jen pár věcí, jinak samé harampádí.", "", false);
-        Prostor mSDvermi = new Prostor("s_dvermi", " s těžkými tajuplně vypadajícími dveřmi. Vedle nich je klasická masivní páka, která pravděpodobně slouží na jejich otevírání", "", false);
-        Prostor zaDvermi = new Prostor("za_dvere", " za těžkými dveřmi. Hned, jak jsi je otevřel, jsi na něco šlápl. Po bližším prozkoumání jsi zjistil, že to byl šváb.", "", false);
+                                                 "Z jednoho východu vychází uklidňující modrá záře", ", kde býval meč v kameni.", false, 1, 1);
+        Prostor mSKamenem = new Prostor("s_kamenem", " s kamenem. Zajímavé.. Z této místnosti vycházela modrá záře, ale ve skutečnosti se v ní nachází špinavý, zaprášený kámen zarostlý mechem. Je za ním cedulka, která píše \"Prosím, nechte kámen na svém místě\"", "", false, 1, 1);
+        Prostor mSDetektorem = new Prostor("s_detektorem", " s detektorem. Vidíš velký detektor kovu, jako ty, které bývají na letištích, ale není u nich obsluha. Vypadá, že už dlouho nebyl používán a snad ani nefunguje.", " s detektorem, který sežral tvůj starý batoh a vybuchl.", true, 1, 1);
+        Prostor mSHlavici = new Prostor("s_hlavici", " s atomovou hlavicí. Uprostřed místnosti je velká atomová hlavice.", ", kde původně byla atomová hlavice.", false, 1, 1);
+        Prostor sklad = new Prostor("sklad", " sklad. Je tu jen pár věcí, jinak samé harampádí.", "", false, 1, 1);
+        Prostor mSDvermi = new Prostor("s_dvermi", " s těžkými tajuplně vypadajícími dveřmi. Vedle nich je klasická masivní páka, která pravděpodobně slouží na jejich otevírání", "", false, 1, 1);
+        Prostor zaDvermi = new Prostor("za_dvere", " za těžkými dveřmi. Hned, jak jsi je otevřel, jsi na něco šlápl. Po bližším prozkoumání jsi zjistil, že to byl šváb.", "", false, 1, 1);
         
         mSPostavou.setVychod(mSMecem);
         mSMecem.setVychod(mSPostavou);

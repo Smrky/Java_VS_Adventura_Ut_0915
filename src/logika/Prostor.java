@@ -32,6 +32,8 @@ public class Prostor {
     private String popisZamceno;
     private String popisPo;
     private boolean zmeneno;
+    private double posLeft;
+    private double posTop;
     
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -43,14 +45,24 @@ public class Prostor {
      * @param popisPo popis prostoru po nějaké akci
      * @param zamceno hodnota true, pokud je prostor zamceny, jinak false
      */
-    public Prostor(String nazev, String popis, String popisPo, boolean zamceno) {
+    public Prostor(String nazev, String popis, String popisPo, boolean zamceno, double posLeft, double posTop) {
         this.nazev = nazev;
         this.popis = popis;
         this.popisPo = popisPo;
         this.zamceno = zamceno;
+        this.posLeft = posLeft;
+        this.posTop = posTop;
         vychody = new HashSet<>();
         veci = new HashMap<>();
         postavy = new HashMap<>();
+    }
+
+    public double getPosLeft() {
+        return posLeft;
+    }
+
+    public double getPosTop() {
+        return posTop;
     }
     
     /**
