@@ -1,5 +1,10 @@
 package logika;
 
+import java.util.ArrayList;
+import java.util.List;
+import utils.Observer;
+import utils.Subject;
+
 
 /**
  * Class HerniPlan - třída představující mapu a stav adventury.
@@ -11,10 +16,12 @@ package logika;
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, Ondřej Smrček
  * @version    ZS 2016/2017
  */
-public class HerniPlan {
+public class HerniPlan implements Subject{
     private Prostor aktualniProstor;
     private Batoh batoh;
     private boolean konecHry;
+    
+    private List<Observer> listObserveru = new ArrayList<Observer>();
 
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -33,13 +40,13 @@ public class HerniPlan {
         // vytvářejí se jednotlivé prostory
         Prostor mSPostavou = new Prostor("s_postavou", " s postavou. V místnosti nic moc není, pouze tajemná postava", "", false, 1, 1);
         Prostor mSMecem = new Prostor("s_mecem", " s mečem. V místnosti vidíš velký meč zaražený v kameni připomínající Excalibur. Místnost osvětlují zapálené louče.\n" +
-                                                 "Z jednoho východu vychází uklidňující modrá záře", ", kde býval meč v kameni.", false, 1, 1);
-        Prostor mSKamenem = new Prostor("s_kamenem", " s kamenem. Zajímavé.. Z této místnosti vycházela modrá záře, ale ve skutečnosti se v ní nachází špinavý, zaprášený kámen zarostlý mechem. Je za ním cedulka, která píše \"Prosím, nechte kámen na svém místě\"", "", false, 1, 1);
-        Prostor mSDetektorem = new Prostor("s_detektorem", " s detektorem. Vidíš velký detektor kovu, jako ty, které bývají na letištích, ale není u nich obsluha. Vypadá, že už dlouho nebyl používán a snad ani nefunguje.", " s detektorem, který sežral tvůj starý batoh a vybuchl.", true, 1, 1);
-        Prostor mSHlavici = new Prostor("s_hlavici", " s atomovou hlavicí. Uprostřed místnosti je velká atomová hlavice.", ", kde původně byla atomová hlavice.", false, 1, 1);
-        Prostor sklad = new Prostor("sklad", " sklad. Je tu jen pár věcí, jinak samé harampádí.", "", false, 1, 1);
-        Prostor mSDvermi = new Prostor("s_dvermi", " s těžkými tajuplně vypadajícími dveřmi. Vedle nich je klasická masivní páka, která pravděpodobně slouží na jejich otevírání", "", false, 1, 1);
-        Prostor zaDvermi = new Prostor("za_dvere", " za těžkými dveřmi. Hned, jak jsi je otevřel, jsi na něco šlápl. Po bližším prozkoumání jsi zjistil, že to byl šváb.", "", false, 1, 1);
+                                                 "Z jednoho východu vychází uklidňující modrá záře", ", kde býval meč v kameni.", false, 10, 10);
+        Prostor mSKamenem = new Prostor("s_kamenem", " s kamenem. Zajímavé.. Z této místnosti vycházela modrá záře, ale ve skutečnosti se v ní nachází špinavý, zaprášený kámen zarostlý mechem. Je za ním cedulka, která píše \"Prosím, nechte kámen na svém místě\"", "", false, 20, 20);
+        Prostor mSDetektorem = new Prostor("s_detektorem", " s detektorem. Vidíš velký detektor kovu, jako ty, které bývají na letištích, ale není u nich obsluha. Vypadá, že už dlouho nebyl používán a snad ani nefunguje.", " s detektorem, který sežral tvůj starý batoh a vybuchl.", true, 30, 30);
+        Prostor mSHlavici = new Prostor("s_hlavici", " s atomovou hlavicí. Uprostřed místnosti je velká atomová hlavice.", ", kde původně byla atomová hlavice.", false, 40, 40);
+        Prostor sklad = new Prostor("sklad", " sklad. Je tu jen pár věcí, jinak samé harampádí.", "", false, 50, 50);
+        Prostor mSDvermi = new Prostor("s_dvermi", " s těžkými tajuplně vypadajícími dveřmi. Vedle nich je klasická masivní páka, která pravděpodobně slouží na jejich otevírání", "", false, 60, 60);
+        Prostor zaDvermi = new Prostor("za_dvere", " za těžkými dveřmi. Hned, jak jsi je otevřel, jsi na něco šlápl. Po bližším prozkoumání jsi zjistil, že to byl šváb.", "", false, 70, 70);
         
         mSPostavou.setVychod(mSMecem);
         mSMecem.setVychod(mSPostavou);
@@ -127,6 +134,7 @@ public class HerniPlan {
      */
     public void setAktualniProstor(Prostor prostor) {
        aktualniProstor = prostor;
+       notifyObservers();
     }
     
     /**
@@ -156,5 +164,22 @@ public class HerniPlan {
     public Batoh getBatoh()
     {
         return batoh;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        listObserveru.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        listObserveru.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer listObserveruItem : listObserveru) {
+            listObserveruItem.update();
+        }
     }
 }

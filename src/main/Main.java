@@ -5,6 +5,8 @@
  */
 package main;
 
+import GUI.Mapa;
+import GUI.MenuLista;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,14 +34,25 @@ import uiText.TextoveRozhrani;
  * @author smro00
  */
 public class Main extends Application {
+
+
     
     private TextArea centralText;
     private IHra hra;
+
+    
     private TextField zadejPrikazTextArea;
+    
+    private Mapa mapa;
+    private MenuLista menuLista;
 
     @Override
     public void start(Stage primaryStage) {
         hra = new Hra();
+        
+        mapa = new Mapa(hra);
+        menuLista = new MenuLista(hra, this);
+        
         BorderPane borderPane = new BorderPane();
         
 
@@ -74,29 +87,27 @@ public class Main extends Application {
             }
         });
         
-        //Obrázek s mapou
-        
-        FlowPane obrazekFlowPane = new FlowPane();
-        
-        ImageView obrazekImageView = new ImageView(new Image(Main.class.getResourceAsStream("/zdroje/mapa.jpg"),200,200,false,true));
-        obrazekFlowPane.setAlignment(Pos.CENTER);
-        obrazekFlowPane.getChildren().add(obrazekImageView);
-        
+      
 
         //Dolní lišta s elementy
         FlowPane dolniLista = new FlowPane();
         dolniLista.setAlignment(Pos.CENTER);
         dolniLista.getChildren().addAll(zadejPrikazLabel, zadejPrikazTextArea);
         
-        borderPane.setLeft(obrazekFlowPane);
+        borderPane.setLeft(mapa);
         borderPane.setBottom(dolniLista);
-
+        borderPane.setTop(menuLista);
+        
         Scene scene = new Scene(borderPane, 300, 250);
-
         primaryStage.setTitle("Adventura");
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        zadejPrikazTextArea.requestFocus();
+    }
+
+    public Mapa getMapa() {
+        return mapa;
     }
 
     /**
@@ -115,6 +126,14 @@ public class Main extends Application {
                 System.exit(1);
             }
         }
+    }
+    
+    public TextArea getCentralText() {
+        return centralText;
+    }
+    
+    public void setHra(IHra hra) {
+        this.hra = hra;
     }
 
 }
