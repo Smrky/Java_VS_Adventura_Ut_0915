@@ -45,9 +45,13 @@ public class Main extends Application {
     
     private Mapa mapa;
     private MenuLista menuLista;
+    
+    private Stage stage;
 
     @Override
     public void start(Stage primaryStage) {
+        this.setStage(primaryStage);
+                
         hra = new Hra();
         
         mapa = new Mapa(hra);
@@ -106,6 +110,10 @@ public class Main extends Application {
         zadejPrikazTextArea.requestFocus();
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
     public Mapa getMapa() {
         return mapa;
     }
@@ -134,6 +142,10 @@ public class Main extends Application {
     
     public void setHra(IHra hra) {
         this.hra = hra;
+    }
+
+    private void setStage(Stage primaryStage) {
+        stage = primaryStage;
     }
 
 }
