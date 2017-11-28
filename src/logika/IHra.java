@@ -52,6 +52,13 @@ public interface IHra
      *  @return     odkaz na herní plán
      */
      public HerniPlan getHerniPlan();
+     
+     /**
+      * Metoda vrací text k vypsaní
+      * 
+      * @return 
+      */
+     public String getTextKVypsani();
     
     //== ZDĚDĚNÉ METODY ========================================================
     //== INTERNÍ DATOVÉ TYPY ===================================================

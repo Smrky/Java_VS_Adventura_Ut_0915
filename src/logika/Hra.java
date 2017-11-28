@@ -20,6 +20,7 @@ public class Hra implements IHra {
     private HerniPlan herniPlan;
     private TextArea centralText;
     private boolean konecHry = false;
+    public String textKVypsani;
 
     /**
      *  Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
@@ -100,7 +101,6 @@ public class Hra implements IHra {
         for(int i=0 ;i<parametry.length;i++){
             parametry[i]= slova[i+1];   
         }
-        String textKVypsani;
         if (platnePrikazy.jePlatnyPrikaz(slovoPrikazu)) {
             IPrikaz prikaz = platnePrikazy.vratPrikaz(slovoPrikazu);
             textKVypsani = prikaz.proved(parametry);
@@ -144,8 +144,22 @@ public class Hra implements IHra {
         return herniPlan;
      }
 
+     /**
+      * Metoda vrací central text
+      * 
+      * @return 
+      */
     public TextArea getCentralText() {
         return centralText;
+    }
+    
+    /**
+     * Metoda vrací text k vypsání
+     * 
+     * @return 
+     */
+    public String getTextKVypsani(){
+        return textKVypsani;
     }
     
 }

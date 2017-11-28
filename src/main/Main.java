@@ -263,7 +263,7 @@ public class Main extends Application {
             centralText.appendText(hra.vratEpilog());
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Konec hry");
-            alert.setHeaderText("Díky, že jste si zahráli");
+            alert.setHeaderText(hra.getTextKVypsani());
             alert.setContentText("Chcete hrát znovu?");
             ButtonType buttonNewGame = new ButtonType("Nová hra");
             ButtonType buttonKonec = new ButtonType("Konec");
@@ -283,6 +283,7 @@ public class Main extends Application {
      * 
      */
     public void newGame(){
+        centralText = new TextArea();
         hra = new Hra(centralText);
         getMapa().newGame(hra);
         getBatohSeznam().newGame(hra);
