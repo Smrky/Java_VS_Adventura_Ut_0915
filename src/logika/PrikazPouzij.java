@@ -57,7 +57,7 @@ public class PrikazPouzij implements IPrikaz
         
         if (vec == null)
         {
-            return nazevVeci + " tu není.";
+            return "Jak bys to jako tady chtěl použít?";
         }
         
         if (vec.isPouzitelna())
@@ -72,11 +72,17 @@ public class PrikazPouzij implements IPrikaz
                 
                 if (nazevVeci.equals("lektvar"))
                 {
+                    Prostor prostor = hPlan.getAktualniProstor();
+                    if(!hPlan.getAktualniProstor().getNazev().equals("sMecem")){
+                        hPlan.setAktualniProstor(hPlan.getAktualniProstor().vratSousedniProstor("sMecem"));
+                    }
+                    
                     Vec mec = hPlan.getAktualniProstor().odeberVec("mec");
                     mec.setPrenositelna(true);
                     hPlan.getAktualniProstor().vlozVec(mec);
-                    Prostor sousedni = hPlan.getAktualniProstor().vratSousedniProstor("s_detektorem");
+                    Prostor sousedni = hPlan.getAktualniProstor().vratSousedniProstor("sDetektorem");
                     sousedni.setZamceno(false);
+                    hPlan.setAktualniProstor(prostor);
                     return "Najednou se cítíš plný síly, že bys nadzvedl obrovský balvan. Nebo něco, co je v kameni zabořené.";
                 }
                 
@@ -139,12 +145,8 @@ public class PrikazPouzij implements IPrikaz
             hPlan.getAktualniProstor().vlozVec(vec);
         }
                     
-        if (nazevVeci.equals("lektvar"))
-        {
-            return "Možná to bude znít hloupě, ale lektvar můžeš použít jen v místnosti s mečem.";
-        }
         
-        return nazevVeci + " tady nemůžeš použít.";
+        return "Jak bys to jako tady chtěl využít?";
     }
     
     /**

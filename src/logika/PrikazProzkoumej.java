@@ -43,7 +43,7 @@ public class PrikazProzkoumej implements IPrikaz
         }
         
         String nazevVeci = parametry[0];
-        String vracenyText = nazevVeci + ": ";
+        String vracenyText = nazevVeci + " - ";
         
         Vec vec = hPlan.getAktualniProstor().odeberVec(nazevVeci);
         Vec vecZBatohu = hPlan.getBatoh().odeberVec(nazevVeci);

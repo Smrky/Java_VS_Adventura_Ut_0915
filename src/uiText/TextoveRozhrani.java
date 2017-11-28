@@ -50,6 +50,11 @@ public class TextoveRozhrani {
         System.out.println(hra.vratEpilog());
     }
     
+    /**
+     * Metoda, která dovoluje načíst hru ze souboru
+     * 
+     * @param soubor 
+     */
     public void hrajZeSouboru(String soubor) {
         System.out.println("Nacitam prikazy ze souboru " + soubor);
         

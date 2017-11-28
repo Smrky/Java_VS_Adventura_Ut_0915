@@ -6,8 +6,9 @@
 package utils;
 
 /**
- *
- * @author smro00
+ * Třída, která definuje observer
+ * 
+ * @author Ondřej Smrček
  */
 public interface Observer {
     

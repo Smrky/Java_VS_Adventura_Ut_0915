@@ -61,7 +61,8 @@ public class PrikazDej implements IPrikaz
         
         if (postava == null)
         {
-            return postava.getJmeno() + "tady bohužel není.";
+            hPlan.getBatoh().pridejVec(vec);
+            return "Taková postava tady bohužel není.";
         }
         
         hPlan.getAktualniProstor().vlozPostavu(postava);
@@ -93,7 +94,4 @@ public class PrikazDej implements IPrikaz
     {
         return NAZEV;
     }
-
-    //== Soukromé metody (instancí i třídy) ========================================
-
 }

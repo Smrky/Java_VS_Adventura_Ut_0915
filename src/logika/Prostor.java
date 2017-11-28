@@ -26,27 +26,34 @@ public class Prostor {
     private String nazev;
     private String popis;
     private Set<Prostor> vychody;   // obsahuje sousední místnosti
-    private Map<String, Vec> veci;
-    private Map<String, Postava> postavy;
+    public Map<String, Vec> veci;
+    public Map<String, Postava> postavy;
     private boolean zamceno;
     private String popisZamceno;
     private String popisPo;
     private boolean zmeneno;
     private double posLeft;
     private double posTop;
+    private String jmeno;
+    private int level;
     
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
      * před domem"
      *
      * @param nazev nazev prostoru, jednoznačný identifikátor, jedno slovo nebo
-     * víceslovný název bez mezer.
+     * víceslovný název bez mezer - použito v kódu
+     * @param jmeno jméno prostoru - pro účely GUI
      * @param popis Popis prostoru.
      * @param popisPo popis prostoru po nějaké akci
      * @param zamceno hodnota true, pokud je prostor zamceny, jinak false
+     * @param posLeft souřadnice y prostoru
+     * @param posTop souřadnice x prostoru
+     * @param level určuje míru viditelnosti na mapě
      */
-    public Prostor(String nazev, String popis, String popisPo, boolean zamceno, double posLeft, double posTop) {
+    public Prostor(String nazev, String jmeno, String popis, String popisPo, boolean zamceno, double posLeft, double posTop, int level) {
         this.nazev = nazev;
+        this.jmeno = jmeno;
         this.popis = popis;
         this.popisPo = popisPo;
         this.zamceno = zamceno;
@@ -55,12 +62,23 @@ public class Prostor {
         vychody = new HashSet<>();
         veci = new HashMap<>();
         postavy = new HashMap<>();
+        this.level = level;
     }
 
+    /**
+     * Vrací souřadnici y prostoru 
+     * 
+     * @return 
+     */
     public double getPosLeft() {
         return posLeft;
     }
 
+    /**
+     * Vrací souřadnici x prostoru
+     * 
+     * @return 
+     */
     public double getPosTop() {
         return posTop;
     }
@@ -268,7 +286,7 @@ public class Prostor {
      */
     public void vlozPostavu(Postava postava)
     {
-        postavy.put(postava.getJmeno(), postava);
+        postavy.put(postava.getNazev(), postava);
     }
     
     /**
@@ -331,4 +349,55 @@ public class Prostor {
     {
         this.zmeneno = zmeneno;
     }
+
+    /**
+     * Vrací jméno prostoru (pro účely GUI)
+     * 
+     * @return 
+     */
+    public String getJmeno() {
+        return jmeno;
+    }
+
+    /**
+     * Vrací mapu věcí v prostoru
+     * 
+     * @return 
+     */
+    public Map<String, Vec> getVeci() {
+        return veci;
+    }
+
+    /**
+     * Vrací mapu postav v prostoru
+     * 
+     * @return 
+     */
+    public Map<String, Postava> getPostavy() {
+        return postavy;
+    }
+
+    /**
+     * Vrací level prostoru
+     * 
+     * @return 
+     */
+    public int getLevel() {
+        return level;
+    }
+    
+    /**
+     * Nastavuje level prostoru
+     * 
+     * @param level 
+     */
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    
+    
+    
+    
+    
+    
 }

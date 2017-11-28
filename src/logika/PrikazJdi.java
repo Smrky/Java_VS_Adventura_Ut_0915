@@ -47,8 +47,12 @@ class PrikazJdi implements IPrikaz {
         }
         else if (!sousedniProstor.isZamceno())
         {
+            if (sousedniProstor.getLevel() > plan.getAktualniProstor().getLevel()){
+                plan.getAktualniProstor().setLevel(sousedniProstor.getLevel());
+            }
+                
             plan.setAktualniProstor(sousedniProstor);
-            if (smer.equals("s_hlavici"))
+            if (smer.equals("sHlavici"))
             {
                 if (!detektor && plan.getBatoh().getSeznam().size() > 0)
                 {
@@ -73,11 +77,12 @@ class PrikazJdi implements IPrikaz {
                 }
             }
             
-            if (smer.equals("za_dvere"))
+            if (smer.equals("zaDvere"))
             {
                 plan.setKonecHry(true);
                 return "Hned, jak jsi otevřel tyto dveře, jsi na něco šlápl. Po bližším prozkoumání jsi zjistil, že to byl obrovský šváb.\nVidíš před sebou klec a v ní zohyzdněné individuum. Když jsi mu otevřel klec, radostně tě obejmul a začal povídat:\n\"Och, ani nevíš, jak jsem ti vděčný! Byl jsem tady vězněn již několik let.. Ten šváb, kterého jsi zašlápl, byl švábní generál, který měl v plánu zničit celý svět. Naštěstí jsi mu v tom včas zabránil. \nDobrá práce!\"";
             }
+            
             return sousedniProstor.dlouhyPopis() + "\n" + plan.getBatoh().obsahBatohu();
         }
         

@@ -60,7 +60,7 @@ public class Batoh
     /**
      * Metoda odebírá věc z batohu
      * 
-     * @param nazev název věci na odebrání z batohu
+     * @param nazevVeci název věci na odebrání z batohu
      * @return objekt třídy Vec, když je věc odebrána, jinak null
      */
     public Vec odeberVec(String nazevVeci)
@@ -83,11 +83,7 @@ public class Batoh
      */
     public boolean jePlny()
     {
-        if (seznam.size() < KAPACITA)
-        {
-            return false;
-        }
-        return true;
+        return seznam.size() >= KAPACITA;
     }
     
     /**
@@ -114,9 +110,5 @@ public class Batoh
     {
         return seznam;
     }
-    //== Nesoukromé metody (instancí i třídy) ======================================
-
-
-    //== Soukromé metody (instancí i třídy) ========================================
 
 }

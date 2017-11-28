@@ -1,5 +1,7 @@
 package logika;
 
+import javafx.scene.control.TextArea;
+
 
 /**
  * Třída Hra - třída představující logiku adventury.
@@ -16,12 +18,33 @@ package logika;
 public class Hra implements IHra {
     private SeznamPrikazu platnePrikazy;    // obsahuje seznam přípustných příkazů
     private HerniPlan herniPlan;
+    private TextArea centralText;
     private boolean konecHry = false;
 
     /**
      *  Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
      */
     public Hra() {
+        herniPlan = new HerniPlan();
+        platnePrikazy = new SeznamPrikazu();
+        platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
+        platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazKonec(this));
+        platnePrikazy.vlozPrikaz(new PrikazVezmi(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazProzkoumej(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazOdeber(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazMluv(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazPouzij(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazDej(herniPlan));
+    }
+    
+    /**
+     * Konstruktor pro vytvoření hry s centralTextem používaným ve třídě Main (pro účely GUI)
+     * 
+     * @param centralText 
+     */
+    public Hra(TextArea centralText) {
+        this.centralText = centralText;
         herniPlan = new HerniPlan();
         platnePrikazy = new SeznamPrikazu();
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
@@ -45,7 +68,7 @@ public class Hra implements IHra {
                 "Vrátil ses do sklepa, abys s nimi skoncoval, ale co se nestalo? \nPropadl ses podlahou. Bylo to kvůli váze plamenometu nebo na tebe švábi přichystali past?\n" +
                 "Ocitl ses v jakémsi komplexu připomínající bunkr z druhé svétové války a cesta zpátky není momentálně možná.\n" + "\n" + 
                herniPlan.getAktualniProstor().dlouhyPopis() + "\n"
-               + herniPlan.getBatoh().obsahBatohu();
+               + herniPlan.getBatoh().obsahBatohu() + "\n";
     }
     
     /**
@@ -77,7 +100,7 @@ public class Hra implements IHra {
         for(int i=0 ;i<parametry.length;i++){
             parametry[i]= slova[i+1];   
         }
-        String textKVypsani=" .... ";
+        String textKVypsani;
         if (platnePrikazy.jePlatnyPrikaz(slovoPrikazu)) {
             IPrikaz prikaz = platnePrikazy.vratPrikaz(slovoPrikazu);
             textKVypsani = prikaz.proved(parametry);
@@ -88,7 +111,15 @@ public class Hra implements IHra {
         }
         else {
             textKVypsani="Nevím co tím myslíš? Tento příkaz neznám. ";
+        }        
+        
+        if(this.getCentralText()==null){
         }
+        else{
+            centralText.appendText("\n" + textKVypsani + "\n");
+            this.getHerniPlan().notifyObservers();
+        }
+        
         return textKVypsani;
     }
     
@@ -112,5 +143,9 @@ public class Hra implements IHra {
      public HerniPlan getHerniPlan(){
         return herniPlan;
      }
+
+    public TextArea getCentralText() {
+        return centralText;
+    }
     
 }

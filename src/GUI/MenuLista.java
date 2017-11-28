@@ -12,45 +12,55 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import logika.Hra;
 import logika.IHra;
 import main.Main;
 
 /**
+ * Zobrazuje grafické rozhraní horní lišty hry
  *
- * @author smro00
+ * @author Ondřej Smrček
  */
 public class MenuLista extends MenuBar {
     
     private IHra hra;
     private Main main;
     
+    /**
+     * Konstruktor třídy
+     * 
+     * @param hra
+     * @param main 
+     */
     public MenuLista(IHra hra, Main main){
         this.hra = hra;
         this.main = main;
         init();
     }
     
+    /**
+     * Počáteční nastavení třídy
+     * 
+     */
     private void init(){
         
         Menu novySoubor = new Menu("Adventura");
-        Menu napoveda = new Menu("Help");
+        Menu napoveda = new Menu("Nápověda");
         
         MenuItem novaHra = new MenuItem("Nová hra");
         //MenuItem novaHra = new MenuItem("Nová hra", new ImageView(new Image(Main.class.getResourceAsStream("/zdroje/ikona.png"))));
         
-        novaHra.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
+        novaHra.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
         MenuItem konecHry = new MenuItem("Konec hry");
+        konecHry.setAccelerator(KeyCombination.keyCombination("Ctrl+K"));
         
         novySoubor.getItems().addAll(novaHra, konecHry);
         
         MenuItem oProgramu = new MenuItem("O programu");
         MenuItem napovedaItem = new MenuItem("Napoveda");
+        napovedaItem.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
         
         napoveda.getItems().addAll(oProgramu, napovedaItem);
         
@@ -66,12 +76,10 @@ public class MenuLista extends MenuBar {
         
         novaHra.setOnAction(new EventHandler<ActionEvent>() {
 
+            
             @Override
             public void handle(ActionEvent event) {
-                hra = new Hra();
-                main.getMapa().newGame(hra);
-                main.setHra(hra);
-                main.getCentralText().setText(hra.vratUvitani());
+                main.newGame();
             }
         });
         
@@ -83,8 +91,8 @@ public class MenuLista extends MenuBar {
                 Alert oProgramuAlert = new Alert(Alert.AlertType.INFORMATION);
                 
                 oProgramuAlert.setTitle("O programu");
-                oProgramuAlert.setHeaderText("Super adventura XYZ");
-                oProgramuAlert.setContentText("Lorem ipsum");
+                oProgramuAlert.setHeaderText("Adventura pro kurz 4IT115 Softwarové inženýrství");
+                oProgramuAlert.setContentText("Vytvořil Ondřej Smrček - smro00");
                 oProgramuAlert.initOwner(main.getStage());
                 
                 oProgramuAlert.showAndWait();

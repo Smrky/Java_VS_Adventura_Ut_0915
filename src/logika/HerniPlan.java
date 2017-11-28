@@ -38,15 +38,17 @@ public class HerniPlan implements Subject{
      */
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
-        Prostor mSPostavou = new Prostor("s_postavou", " s postavou. V místnosti nic moc není, pouze tajemná postava", "", false, 1, 1);
-        Prostor mSMecem = new Prostor("s_mecem", " s mečem. V místnosti vidíš velký meč zaražený v kameni připomínající Excalibur. Místnost osvětlují zapálené louče.\n" +
-                                                 "Z jednoho východu vychází uklidňující modrá záře", ", kde býval meč v kameni.", false, 10, 10);
-        Prostor mSKamenem = new Prostor("s_kamenem", " s kamenem. Zajímavé.. Z této místnosti vycházela modrá záře, ale ve skutečnosti se v ní nachází špinavý, zaprášený kámen zarostlý mechem. Je za ním cedulka, která píše \"Prosím, nechte kámen na svém místě\"", "", false, 20, 20);
-        Prostor mSDetektorem = new Prostor("s_detektorem", " s detektorem. Vidíš velký detektor kovu, jako ty, které bývají na letištích, ale není u nich obsluha. Vypadá, že už dlouho nebyl používán a snad ani nefunguje.", " s detektorem, který sežral tvůj starý batoh a vybuchl.", true, 30, 30);
-        Prostor mSHlavici = new Prostor("s_hlavici", " s atomovou hlavicí. Uprostřed místnosti je velká atomová hlavice.", ", kde původně byla atomová hlavice.", false, 40, 40);
-        Prostor sklad = new Prostor("sklad", " sklad. Je tu jen pár věcí, jinak samé harampádí.", "", false, 50, 50);
-        Prostor mSDvermi = new Prostor("s_dvermi", " s těžkými tajuplně vypadajícími dveřmi. Vedle nich je klasická masivní páka, která pravděpodobně slouží na jejich otevírání", "", false, 60, 60);
-        Prostor zaDvermi = new Prostor("za_dvere", " za těžkými dveřmi. Hned, jak jsi je otevřel, jsi na něco šlápl. Po bližším prozkoumání jsi zjistil, že to byl šváb.", "", false, 70, 70);
+        Prostor mSPostavou = new Prostor("sPostavou", "Místnost s postavou", " s postavou. V místnosti nic moc není, pouze tajemná postava", "", false, 50, 48, 1);
+        Prostor mSMecem = new Prostor("sMecem", "Místnost s mečem", " s mečem. V místnosti vidíš velký meč zaražený v kameni připomínající Excalibur. Místnost osvětlují zapálené louče.\n" +
+                                                 "Z jednoho východu vychází uklidňující modrá záře", ", kde býval meč v kameni.", false, 140, 48, 2);
+        Prostor mSKamenem = new Prostor("sKamenem", "Místnost s kamenem", " s kamenem. Zajímavé.. Z této místnosti vycházela modrá záře, ale ve skutečnosti se v ní nachází špinavý, zaprášený kámen zarostlý mechem. Je za ním cedulka, která píše \"Prosím, nechte kámen na svém místě\"", "", false, 230, 50, 2);
+        Prostor mSDetektorem = new Prostor("sDetektorem", "Místnost s detektorem", " s detektorem. Vidíš velký detektor kovu, jako ty, které bývají na letištích, ale není u nich obsluha. Vypadá, že už dlouho nebyl používán a snad ani nefunguje.", " s detektorem, který sežral tvůj starý batoh a vybuchl.", true, 140, 134, 3);
+        Prostor mSHlavici = new Prostor("sHlavici", "Místnost s hlavicí", " s atomovou hlavicí. Uprostřed místnosti je velká atomová hlavice.", ", kde původně byla atomová hlavice.", false, 140, 218, 4);
+        Prostor sklad = new Prostor("sklad", "Sklad", " sklad. Je tu jen pár věcí, jinak samé harampádí.", "", false, 230, 218, 4);
+        Prostor mSDvermi = new Prostor("sDvermi", "Místnost s dveřmi", " s těžkými tajuplně vypadajícími dveřmi. Vedle nich je klasická masivní páka, která pravděpodobně slouží na jejich otevírání", "", false, 140, 302, 5);
+        Prostor zaDvermi = new Prostor("zaDvere", "Místnost za dveřmi", " za těžkými dveřmi. Hned, jak jsi je otevřel, jsi na něco šlápl. Po bližším prozkoumání jsi zjistil, že to byl šváb.", "", false, 140, 386, 5);                
+        
+        
         
         mSPostavou.setVychod(mSMecem);
         mSMecem.setVychod(mSPostavou);
@@ -65,34 +67,33 @@ public class HerniPlan implements Subject{
         
         mSDetektorem.nastavZamceno("Dveře jsou zaseknuté. Možná by pomohl ten meč, který je uprostřed místnosti.");
         
-        Vec plamenomet = new Vec("plamenomet", "Nejlepší přítel člověka. Ještě nikdy nezklamal.", true, true);
+        Vec plamenomet = new Vec("plamenomet", "Plamenomet", "Nejlepší přítel člověka. Ještě nikdy nezklamal.", true, true);
         plamenomet.nastavPouzitelnost(mSPostavou);
-        Vec lektvar = new Vec("lektvar", "Lektvar s podivným zápachem.", true, true);
-        lektvar.nastavPouzitelnost(mSMecem);
-        Vec louc = new Vec("louc", "Klasická zapálená louč.", true, false);
-        Vec mec = new Vec("mec", "Velký meč v kameni.", false, false);
+        Vec lektvar = new Vec("lektvar", "Lektvar", "Lektvar s podivným zápachem.", true, true);
+        Vec louc = new Vec("louc", "Louč", "Klasická zapálená louč.", true, false);
+        Vec mec = new Vec("mec", "Meč", "Velký meč v kameni.", false, false);
         mec.nastavPouzitelnost(mSMecem);
-        Vec kamen = new Vec("kamen", "Ošklivý kámen.", true, true);
+        Vec kamen = new Vec("kamen", "Kámen", "Ošklivý kámen.", true, true);
         kamen.nastavPouzitelnost(mSKamenem);
-        Vec detektor = new Vec("detektor", "Velký detektor kovu připevněný k zemi.", false, true);
+        Vec detektor = new Vec("detektor", "Detektor", "Velký detektor kovu připevněný k zemi.", false, true);
         detektor.nastavPouzitelnost(mSDetektorem);
-        Vec hlavice = new Vec("hlavice", "Atomová hlavice.", true, false);
-        Vec pneumatika = new Vec("pneumatika", "Pneumatika na auto. Pravděpodobně ti k ničemu nebude.", true, false);
-        Vec helma = new Vec("helma", "Vojenská helma.", true, false);
-        Vec paka = new Vec("paka", "Masivní páka, která asi něco udělá, když ji použiješ.", false, true);
+        Vec hlavice = new Vec("hlavice", "Hlavice", "Atomová hlavice.", true, false);
+        Vec pneumatika = new Vec("pneumatika", "Pneumatika", "Pneumatika na auto. Pravděpodobně ti k ničemu nebude.", true, false);
+        Vec helma = new Vec("helma", "Helma", "Vojenská helma.", true, false);
+        Vec paka = new Vec("paka", "Páka", "Masivní páka, která asi něco udělá, když ji použiješ.", false, true);
         paka.nastavPouzitelnost(mSDvermi);
         
         String reklamniLetak = "Reklamní leták od společnosti na výrobu detektorů kovu.";
         
-        Vec reklama1 = new Vec("reklama1", reklamniLetak, true, false);
-        Vec reklama2 = new Vec("reklama2", reklamniLetak, true, false);
-        Vec reklama3 = new Vec("reklama3", reklamniLetak, true, false);
-        Vec reklama4 = new Vec("reklama4", reklamniLetak, true, false);
-        Vec reklama5 = new Vec("reklama5", reklamniLetak, true, false);
+        Vec reklama1 = new Vec("reklama1", "Reklamní leták", reklamniLetak, true, false);
+        Vec reklama2 = new Vec("reklama2", "Reklamní leták", reklamniLetak, true, false);
+        Vec reklama3 = new Vec("reklama3", "Reklamní leták", reklamniLetak, true, false);
+        Vec reklama4 = new Vec("reklama4", "Reklamní leták", reklamniLetak, true, false);
+        Vec reklama5 = new Vec("reklama5", "Reklamní leták", reklamniLetak, true, false);
         
 
         
-        Postava tajemnaPostava = new Postava("postava", "Tajemná postava, tvář jí zakrývá černá kapuce, přesto vypadá ohyzdně. Má cigáro v puse a nervózně překračuje po místnosti.", "\"Čágo, nemáš náhodou voheň? Vyplatí se ti to.\"");
+        Postava tajemnaPostava = new Postava("postava", "Postava", "Tajemná postava, tvář jí zakrývá černá kapuce, přesto vypadá ohyzdně. Má cigáro v puse a nervózně překračuje po místnosti.", "\"Čágo, nemáš náhodou voheň? Vyplatí se ti to.\"");
         tajemnaPostava.nastavVymenu(lektvar, louc, "\"Už jsem ti snad dal lektvar. Co po mně ještě chceš?\"", "\"Dík, jseš kámoš. Tady máš tohle, mně to nějak nechutná a už je to stejně asi prošlý.\"", "\"Co s tim jako mám dělat?\"");
         
         mSPostavou.vlozPostavu(tajemnaPostava);
@@ -134,7 +135,6 @@ public class HerniPlan implements Subject{
      */
     public void setAktualniProstor(Prostor prostor) {
        aktualniProstor = prostor;
-       notifyObservers();
     }
     
     /**
@@ -182,4 +182,7 @@ public class HerniPlan implements Subject{
             listObserveruItem.update();
         }
     }
+    
+    
+
 }

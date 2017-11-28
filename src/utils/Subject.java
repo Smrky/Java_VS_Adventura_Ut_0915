@@ -6,8 +6,9 @@
 package utils;
 
 /**
+ * Třída, která definuje Subject pro Observer
  *
- * @author smro00
+ * @author Ondřej Smrček
  */
 public interface Subject {
     

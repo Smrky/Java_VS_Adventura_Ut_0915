@@ -2,6 +2,8 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package logika;
 
+import java.util.Set;
+
 
 
 /*******************************************************************************
@@ -14,6 +16,7 @@ public class Vec
 {
     //== Datové atributy (statické i instancí)======================================
     private String nazev;
+    private String jmeno;
     private String popis;
     private boolean prenositelna;
     private boolean pouzitelna;
@@ -24,14 +27,16 @@ public class Vec
     /***************************************************************************
      *  Konstruktor
      *  
-     *  @param nazev název věci
+     *  @param nazev název věci (používá se v kódu)
+     *  @param jmeno jméno věci (hezčí název - používá se v GUI)
      *  @param popis popis věci
      *  @param prenositelna hodnota true, pokud je věc přenositelná, jinak false
      *  @param pouzitelna hodnota true, pokud je věc použitelná, jinak false
      */
-    public Vec(String nazev, String popis, boolean prenositelna, boolean pouzitelna)
+    public Vec(String nazev, String jmeno, String popis, boolean prenositelna, boolean pouzitelna)
     {
         this.nazev = nazev;
+        this.jmeno = jmeno;
         this.popis = popis;
         this.prenositelna = prenositelna;
         this.pouzitelna = pouzitelna;
@@ -115,6 +120,13 @@ public class Vec
         this.pouzitelna = pouzitelna;
     }
 
-    //== Soukromé metody (instancí i třídy) ========================================
+     /**
+     * Vrací jméno věci (GUI účely)
+     * 
+     * @return
+     */
+    public String getJmeno() {
+        return jmeno;
+    }
 
 }

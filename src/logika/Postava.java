@@ -13,6 +13,7 @@ package logika;
 public class Postava
 {
     //== Datové atributy (statické i instancí)======================================
+    private String nazev;
     private String jmeno;
     private String popis;
     private Vec chce;
@@ -28,12 +29,14 @@ public class Postava
     /***************************************************************************
      *  Konstruktor
      *  
-     *  @param jmeno jméno postavy
+     *  @param nazev název postavy - používáno v kódu
+     *  @param jmeno jméno postavy - pro účely GUI
      *  @param popis popis postavy
      *  @param proslov proslov postavy
      */
-    public Postava(String jmeno, String popis, String proslov)
+    public Postava(String nazev, String jmeno, String popis, String proslov)
     {
+        this.nazev = nazev;
         this.jmeno = jmeno;
         this.popis = popis;
         mluvPred = proslov;
@@ -59,7 +62,16 @@ public class Postava
     }
     
     /**
-     * Vrací jméno postavy
+     * Vrací název postavy (používá se v kódu)
+     * 
+     * @return název postavy
+     */
+    public String getNazev() {
+        return nazev;
+    }
+    
+    /**
+     * Vrací jméno postavy (hezčí název - používá se v GUI)
      * 
      * @return jméno postavy
      */
@@ -67,6 +79,8 @@ public class Postava
     {
         return jmeno;
     }
+    
+    
     
     /**
      * Vrací popis postavy
@@ -158,7 +172,5 @@ public class Postava
     {
         return chce.getNazev();
     }
-
-    //== Soukromé metody (instancí i třídy) ========================================
 
 }
