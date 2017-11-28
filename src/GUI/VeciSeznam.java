@@ -118,7 +118,8 @@ public class VeciSeznam extends ListView implements Observer{
             veciOkno.setCenter(vecX);
             dataVeci.add(veciOkno);
             
-            main.konecHry();
+            
         }
+        main.konecHry();
     }  
 }

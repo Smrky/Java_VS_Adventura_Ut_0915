@@ -101,8 +101,9 @@ public class PostavySeznam extends ListView implements Observer{
             postavaX.getChildren().addAll(buttonProzkoumej, buttonMluv);
             postavaOkno.setCenter(postavaX);
             dataPostav.add(postavaOkno);
-            main.konecHry();
+            
         }   
+        main.konecHry();
     }
     
 }

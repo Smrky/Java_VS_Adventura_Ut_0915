@@ -283,7 +283,6 @@ public class Main extends Application {
      * 
      */
     public void newGame(){
-        centralText = new TextArea();
         hra = new Hra(centralText);
         getMapa().newGame(hra);
         getBatohSeznam().newGame(hra);

@@ -90,8 +90,9 @@ public class VychodySeznam extends ListView implements Observer{
             });
             vychod.getChildren().add(button);
             dataVychodu.add(vychod);
-            main.konecHry();
-        }   
+            
+        }
+        main.konecHry();
     }
     
 }

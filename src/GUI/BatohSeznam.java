@@ -141,8 +141,9 @@ public class BatohSeznam extends ListView implements Observer{
             batohOkno.setCenter(vecX);
             dataBatohu.add(batohOkno);
             
-            main.konecHry();
+            
         }
+        main.konecHry();
     }
     
 }
